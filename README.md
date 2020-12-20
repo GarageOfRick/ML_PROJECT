@@ -51,31 +51,31 @@ python repair_badnet_strip.py data/clean_validation_data.h5 data/sunglasses_pois
 
 #### Human Face Images
 
-Clean sample
+Clean sample:
 
-![](/Volumes/MacintoshSD/3_DEV/ML_PROJECT/strip/images/Sample_Clean.png)
+![](strip/images/Sample_Clean.png)
 
-Sunglasses sample
+Sunglasses sample:
 
-![](/Volumes/MacintoshSD/3_DEV/ML_PROJECT/strip/images/Sample_Sunglasses.png)
+![](strip/images/Sample_Sunglasses.png)
 
-Eyebrows sample
+Eyebrows sample:
 
-![](/Volumes/MacintoshSD/3_DEV/ML_PROJECT/strip/images/Sample_Eyebrows.png)
+![](strip/images/Sample_Eyebrows.png)
 
-Perturbation demonstration
+Perturbation demonstration:
 
-![](/Volumes/MacintoshSD/3_DEV/ML_PROJECT/strip/images/Sample_Perturbation.png)
+![](strip/images/Sample_Perturbation.png)
 
 #### BadNet1
 
 Entropy distribution of perturbed clean (benign) and poisoned (trojan) samples.
 
-![](/Volumes/MacintoshSD/3_DEV/ML_PROJECT/strip/images/BadNet1, n_test=2000 ,n_perturb=100.png)
+![](strip/images/BadNet1, n_test=2000 ,n_perturb=100.png)
 
 False Rejection Rate (FRR), False Acceptance Rate (FAR) relationship curve.
 
-![](/Volumes/MacintoshSD/3_DEV/ML_PROJECT/strip/images/FAR_FRR_BadNet1.png)
+![](strip/images/FAR_FRR_BadNet1.png)
 
 Accuracy performance on clean validation dataset *clean_validation_data.h5*: 91.63419069888282%
 
@@ -83,7 +83,7 @@ Accuracy performance on clean validation dataset *clean_validation_data.h5*: 91.
 
 Entropy distribution of perturbed clean samples.
 
-![](/Volumes/MacintoshSD/3_DEV/ML_PROJECT/strip/images/BadNet2, n_test=2000, n_perturb=100,200.png)
+![](strip/images/BadNet2, n_test=2000, n_perturb=100,200.png)
 
 Accuracy performance on clean validation dataset *clean_validation_data.h5*: 76.66926474408938%
 
@@ -91,11 +91,11 @@ Accuracy performance on clean validation dataset *clean_validation_data.h5*: 76.
 
 Entropy distribution of perturbed clean (benign) and poisoned (trojan) samples.
 
-![](/Volumes/MacintoshSD/3_DEV/ML_PROJECT/strip/images/BadNet3, n_test=2000 ,n_perturb=100.png)
+![](strip/images/BadNet3, n_test=2000 ,n_perturb=100.png)
 
 False Rejection Rate (FRR), False Acceptance Rate (FAR) relationship curve.
 
-![](/Volumes/MacintoshSD/3_DEV/ML_PROJECT/strip/images/FAR_FRR_BadNet3.png)
+![](strip/images/FAR_FRR_BadNet3.png)
 
 Accuracy performance on clean validation dataset *clean_validation_data.h5*: 80.54906036199879%
 
