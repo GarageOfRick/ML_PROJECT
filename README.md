@@ -30,3 +30,73 @@ Pruned_neurons to prediction accuracy on validation data with bad net 1:
 Pruned_neurons to prediction accuracy on validation data with bad net 2:
 
 <img src="images/bd_net2_acc.png" width="250" height="200">
+
+## STRIP
+
+### Usage
+
+To repair any BadNet using STRIP:
+
+```shell
+python repair_badnet_strip.py clean_validation_data poisoned_data clean_test_data badnet badnet_weights
+```
+
+E.g.
+
+```shell
+python repair_badnet_strip.py data/clean_validation_data.h5 data/sunglasses_poisoned_data.h5 data/clean_test_data.h5 models/sunglasses_bd_net.h5 models/sunglasses_bd_weights.h5
+```
+
+### Result Quick View
+
+#### Human Face Images
+
+Clean sample
+
+![](/Volumes/MacintoshSD/3_DEV/ML_PROJECT/strip/images/Sample_Clean.png)
+
+Sunglasses sample
+
+![](/Volumes/MacintoshSD/3_DEV/ML_PROJECT/strip/images/Sample_Sunglasses.png)
+
+Eyebrows sample
+
+![](/Volumes/MacintoshSD/3_DEV/ML_PROJECT/strip/images/Sample_Eyebrows.png)
+
+Perturbation demonstration
+
+![](/Volumes/MacintoshSD/3_DEV/ML_PROJECT/strip/images/Sample_Perturbation.png)
+
+#### BadNet1
+
+Entropy distribution of perturbed clean (benign) and poisoned (trojan) samples.
+
+![](/Volumes/MacintoshSD/3_DEV/ML_PROJECT/strip/images/BadNet1, n_test=2000 ,n_perturb=100.png)
+
+False Rejection Rate (FRR), False Acceptance Rate (FAR) relationship curve.
+
+![](/Volumes/MacintoshSD/3_DEV/ML_PROJECT/strip/images/FAR_FRR_BadNet1.png)
+
+Accuracy performance on clean validation dataset *clean_validation_data.h5*: 91.63419069888282%
+
+#### BadNet2
+
+Entropy distribution of perturbed clean samples.
+
+![](/Volumes/MacintoshSD/3_DEV/ML_PROJECT/strip/images/BadNet2, n_test=2000, n_perturb=100,200.png)
+
+Accuracy performance on clean validation dataset *clean_validation_data.h5*: 76.66926474408938%
+
+#### BadNet3
+
+Entropy distribution of perturbed clean (benign) and poisoned (trojan) samples.
+
+![](/Volumes/MacintoshSD/3_DEV/ML_PROJECT/strip/images/BadNet3, n_test=2000 ,n_perturb=100.png)
+
+False Rejection Rate (FRR), False Acceptance Rate (FAR) relationship curve.
+
+![](/Volumes/MacintoshSD/3_DEV/ML_PROJECT/strip/images/FAR_FRR_BadNet3.png)
+
+Accuracy performance on clean validation dataset *clean_validation_data.h5*: 80.54906036199879%
+
+For more detailed explanation and performance about code, please refer to Jupyter Notebook ***9163 Project STRIP.ipynb*** (PDF version also available) and our project report.
