@@ -61,7 +61,7 @@ def main():
     index_for_clean_image = []
     for i in range(len(x_test)):
         if np.mean(np.mean(test_active[i], axis=(0, 1))[clean_mask] - active[clean_mask]) > threshold:
-            pred[i] = -1
+            pred[i] = 1283
         else:
             index_for_clean_image.append(i)
 
@@ -69,7 +69,7 @@ def main():
     for i in range(len(index_for_clean_image)):
         pred[index_for_clean_image[i]] = labels[i]
 
-    print('labels for the test data, -1 mean the data is poisoned')
+    print('labels for the test data, 1283 mean the data is poisoned')
     print(pred)
     return pred
 

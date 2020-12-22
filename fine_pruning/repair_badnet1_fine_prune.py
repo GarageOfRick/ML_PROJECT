@@ -142,13 +142,13 @@ def main():
         if np.mean(np.mean(a_clean[i], axis=(0, 1))[clean_mask] - activation_val[clean_mask]) < threshold:
             index_for_clean_image.append(i)
         else:
-            pred[i] = -1
+            pred[i] = 1283
 
     labels = np.argmax(pruned_model.predict(x_test[index_for_clean_image]), axis=1)
     for i in range(len(index_for_clean_image)):
         pred[index_for_clean_image[i]] = labels[i]
 
-    print('labels for the test data(in nets one only contains clean data), -1 mean the data is poisoned')
+    print('labels for the test data(in nets one only contains clean data), 1283 mean the data is poisoned')
     print(pred)
     return pred
 
