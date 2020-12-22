@@ -13,6 +13,8 @@ To run the repair badnet2 using fine-pruning:
 
 E.g., `python3 repair_badnet2_fine_prune.py clean_validation_data.h5 test_data.h5 CSAW-HackML-2020-master/models/anonymous_bd_net.h5`
 
+the same way to run badnet3 and badnet4, just changing the h5 files of model and test data.
+
 Results show:
 
 Backdoor data neuron activation:
