@@ -10,10 +10,9 @@ from scipy.stats import norm
 
 # Retriving arguments from terminal
 val_data_filename = str(sys.argv[1])
-poisoned_data_filename = str(sys.argv[2])
-clean_data_filename = str(sys.argv[3])
-model_filename = str(sys.argv[4])
-weight_filename = str(sys.argv[5])
+clean_data_filename = str(sys.argv[2])
+model_filename = str(sys.argv[3])
+weight_filename = str(sys.argv[4])
 
 
 def data_loader(filepath):
@@ -26,14 +25,12 @@ def data_loader(filepath):
 
 
 def data_preprocess(x_data):
-    x_data = x_data.astype(dtype='float32', casting='same_kind')
-    return x_data/255
+    x_data = x_data.astype(dtype='float64', casting='same_kind')
+    return x_data / 255
 
 
 def main():
     # Loading data
-    x_trojan, y_trojan = data_loader(poisoned_data_filename)
-    x_trojan = data_preprocess(x_trojan)
     x_val, y_val = data_loader(val_data_filename)
     x_val = data_preprocess(x_val)
     x_benign, y_benign = data_loader(clean_data_filename)
@@ -50,39 +47,13 @@ def main():
     n_perturb = 100
 
     """Finding entropy threshold"""
-    # Entropys for perturbed clean (benign) and poisoned (trojan) samples
-    index_background_benign = np.random.randint(1, x_benign.shape[0], size=n_test)
-    entropy_benign = entropyCalc(X_b=x_benign[index_background_benign], X_o=x_benign, n_perturb=n_perturb, model=bd_model)
-    index_background_trojan = np.random.randint(1, x_trojan.shape[0], size=n_test)
-    entropy_trojan = entropyCalc(X_b=x_trojan[index_background_trojan], X_o=x_benign, n_perturb=n_perturb, model=bd_model)
+    # Default threshold value
+    threshold = 0.2942637391590416
     
-    # Pick 200 FRR values
-    FRRs = np.linspace(0.001, 0.250, num=200)
-    
-    # Calculate mean and standard deviation of perturbed benign samples entropy
-    mean = np.average(entropy_benign)
-    stddev = np.std(entropy_benign)
-
-    # Select entropy threshold using scipy percent point function
-    thresholds = norm.ppf(FRRs, loc=mean, scale=stddev)
-
-    # Obtaining FAR values
-    FARs = []
-    for threshold in thresholds:
-        FARs.append(np.average(entropy_trojan > threshold))
-
-    # Pick the optimal threshold with the lowest FRR and FAR
-    threshold = thresholds[np.argmin(FRRs + FARs)]
+    print(f'threshold = {threshold}')
 
     """Distinguishing backdoor samples"""
-    # Predict validation set
-    y_pred = np.argmax(bd_model.predict(x_val), axis=1)
-
-    # Calculate entropy for the whole validation set
-    entropy_val = entropyCalc(X_b=x_val, X_o=x_benign, n_perturb=n_perturb, model=bd_model)
-    
-    # Override the prediction result if the sample is classified as backdoored
-    y_pred[entropy_val < threshold] = -1
+    y_pred = predict(x_benign=x_benign, x_val=x_val, bd_model=bd_model, threshold=threshold)
 
     """Present accuracy"""
     class_accu = np.mean(np.equal(y_pred, y_val))*100
@@ -138,6 +109,20 @@ def entropyCalc(X_b, X_o, n_perturb, model):
     entropy = [x / n_perturb for x in entropy]
 
     return entropy
+
+
+# Prediction of repaired net
+def predict(x_benign, x_val, bd_model, threshold, n_perturb=100):
+    # Predict validation set
+    y_pred = np.argmax(bd_model.predict(x_val), axis=1)
+
+    # Calculate entropy for the whole validation set
+    entropy_val = np.array(entropyCalc(X_b=x_val, X_o=x_benign, n_perturb=n_perturb, model=bd_model))
+    
+    # Override the prediction result as 1283 (N+1) if the sample is classified as backdoored
+    y_pred[entropy_val < threshold] = 1283
+
+    return y_pred
 
 
 if __name__ == '__main__':
