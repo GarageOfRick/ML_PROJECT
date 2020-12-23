@@ -1,37 +1,4 @@
-# ML_PROJECT
-
-## Fine-pruning
-To evaluate the repaired badnet please run:
-
-`python3 repair_badnet1_fine_prune.py clean_validation_data single_test_image  repaired_badnet original_badnet`
-
-E.g., `python3 repair_badnet1_fine_prune.py clean_validation_data.h5 test_image.png model/repaired_badnet1.h5 old_model/sunglasses_bd_net.h5`
-
-Just change the python program name, repaired_badnet and the corresponding old model for other badnet
-|Python program                        | Model File Name                      | Repaired Badnet number         |
-| -------------------------------------| ------------------------------------ | ------------------------------ |
-|repair_badnet1_fine_prune.py          | sunglasses_bd_net.h5                 | repaired_badnet1               |
-|repair_badnet2_fine_prune.py          | anonymous_1_bd_net.h5                | repaired_badnet2               |
-|repair_badnet3_fine_prune.py          | anonymous_2_bd_net.h5                | repaired_badnet3               |
-|repair_badnet4_fine_prune.py          | multi_trigger_multi_target_bd_net.h5 | repaired_badnet4               |
-
-Results show:
-
-Backdoor data neuron activation:
-
-<img src="images/backdoorede%20data%20neuron%20activation.png" width="300" height="400">
-
-Clean data neuron activation:
-
-<img src="images/clean%20data%20neuron%20activation.png" width="300" height="400">
-
-Pruned_neurons to prediction accuracy on validation data with bad net 1:
-
-<img src="images/bd_net1_acc.png" width="250" height="200">
-
-Pruned_neurons to prediction accuracy on validation data with bad net 2:
-
-<img src="images/bd_net2_acc.png" width="250" height="200">
+# ML PROJECT FOR ECE-GY 9163
 
 ## STRIP
 
@@ -163,3 +130,36 @@ This table shows the accuracy of repaired badnet on provided clean validation da
 | ~~BadNet4~~     | ~~0.49712885268670665~~ | ~~40.374123148869835%~~ |
 
 For more detailed explanation and performance about code, please refer to Jupyter Notebook **STRIP.ipynb** (PDF version also available) and our project report.
+
+## Fine-pruning
+To evaluate the repaired badnet please run:
+
+`python3 repair_badnet1_fine_prune.py clean_validation_data single_test_image  repaired_badnet original_badnet`
+
+E.g., `python3 repair_badnet1_fine_prune.py clean_validation_data.h5 test_image.png model/repaired_badnet1.h5 old_model/sunglasses_bd_net.h5`
+
+Just change the python program name, repaired_badnet and the corresponding old model for other badnet
+|Python program                        | Model File Name                      | Repaired Badnet number         |
+| -------------------------------------| ------------------------------------ | ------------------------------ |
+|repair_badnet1_fine_prune.py          | sunglasses_bd_net.h5                 | repaired_badnet1               |
+|repair_badnet2_fine_prune.py          | anonymous_1_bd_net.h5                | repaired_badnet2               |
+|repair_badnet3_fine_prune.py          | anonymous_2_bd_net.h5                | repaired_badnet3               |
+|repair_badnet4_fine_prune.py          | multi_trigger_multi_target_bd_net.h5 | repaired_badnet4               |
+
+Results show:
+
+Backdoor data neuron activation:
+
+<img src="images/backdoorede%20data%20neuron%20activation.png" width="300" height="400">
+
+Clean data neuron activation:
+
+<img src="images/clean%20data%20neuron%20activation.png" width="300" height="400">
+
+Pruned_neurons to prediction accuracy on validation data with bad net 1:
+
+<img src="images/bd_net1_acc.png" width="250" height="200">
+
+Pruned_neurons to prediction accuracy on validation data with bad net 2:
+
+<img src="images/bd_net2_acc.png" width="250" height="200">
