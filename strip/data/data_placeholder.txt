@@ -1,1 +1,2 @@
-# Please put the data (png/h5) in this folder.
+# Please put the clean_validation_data.h5 here when examining our project.
+# Also, please put the other data (png/h5) in this folder.
