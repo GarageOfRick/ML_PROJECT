@@ -52,6 +52,14 @@ To repair BadNet1, BadNet2 and BadNet3 using STRIP:
 python repair_badnet1_strip.py clean_validation_data poisoned_data clean_test_data badnet badnet_weights
 ```
 
+```shell
+python repair_badnet2_strip.py clean_validation_data poisoned_data clean_test_data badnet badnet_weights
+```
+
+```shell
+python repair_badnet3_strip.py clean_validation_data poisoned_data clean_test_data badnet badnet_weights
+```
+
 E.g.
 
 ```shell
