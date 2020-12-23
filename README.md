@@ -7,19 +7,13 @@ To evaluate the repaired badnet please run:
 
 E.g., `python3 eval_repaired_badnet.py clean_validation_data.h5 test_image.png model/repaired_badnet1.h5 old_model/sunglasses_bd_net.h5`
 
-To run the repair badnet1 using fine-pruning:
-
-`python3 repair_badnet1_fine_prune.py clean_validation_data poisoned_data test_data bad_net`
-
-E.g., `python3 repair_badnet1_fine_prune.py clean_validation_data.h5 sunglasses_poisoned_data.h5 test_data.h5 CSAW-HackML-2020-master/models/sunglasses_bd_net.h5`
-
-To run the repair badnet2 using fine-pruning:
-
-`python3 repair_badnet2_fine_prune.py clean_validation_data test_data bad_net`
-
-E.g., `python3 repair_badnet2_fine_prune.py clean_validation_data.h5 test_data.h5 CSAW-HackML-2020-master/models/anonymous_bd_net.h5`
-
-the same way to run badnet3 and badnet4, just changing the h5 files of model and test data.
+Just change the repaired_badnet and the corresponding old model and run the eval_repaired_badnet.py for other badnet
+| Model File Name                      | Repaired Badnet number         |
+| ------------------------------------ | ------------------------------ |
+| sunglasses_bd_net.h5                 | repaired_badnet1               |
+| anonymous_1_bd_net.h5                | repaired_badnet2               |
+| anonymous_2_bd_net.h5                | repaired_badnet3               |
+| multi_trigger_multi_target_bd_net.h5 | repaired_badnet4               |
 
 Results show:
 
