@@ -35,70 +35,131 @@ Pruned_neurons to prediction accuracy on validation data with bad net 2:
 
 ## STRIP
 
+### Naming
+
+| Model File Name                      | BadNet Number in STRIP Section |
+| ------------------------------------ | ------------------------------ |
+| sunglasses_bd_net.h5                 | BadNet1                        |
+| anonymous_1_bd_net.h5                | BadNet2                        |
+| multi_trigger_multi_target_bd_net.h5 | BadNet3                        |
+| anonymous_2_bd_net.h5                | BadNet4                        |
+
 ### Usage
 
-To repair any BadNet using STRIP:
+To repair BadNet1, BadNet2 and BadNet3 using STRIP:
 
 ```shell
-python repair_badnet_strip.py clean_validation_data poisoned_data clean_test_data badnet badnet_weights
+python repair_badnet1_strip.py clean_validation_data poisoned_data clean_test_data badnet badnet_weights
+```
+
+```shell
+python repair_badnet2_strip.py clean_validation_data poisoned_data clean_test_data badnet badnet_weights
+```
+
+```shell
+python repair_badnet3_strip.py clean_validation_data poisoned_data clean_test_data badnet badnet_weights
 ```
 
 E.g.
 
 ```shell
-python repair_badnet_strip.py data/clean_validation_data.h5 data/sunglasses_poisoned_data.h5 data/clean_test_data.h5 models/sunglasses_bd_net.h5 models/sunglasses_bd_weights.h5
+python repair_badnet1_strip.py data/clean_validation_data.h5 data/sunglasses_poisoned_data.h5 data/clean_test_data.h5 models/sunglasses_bd_net.h5 models/sunglasses_bd_weights.h5
 ```
 
-### Result Quick View
+To repair BadNet4 using STRIP:
 
-#### Human Face Images
+```shell
+python repair_badnet4_strip.py clean_validation_data clean_test_data badnet badnet_weights
+```
+
+E.g.
+
+```shell
+python repair_badnet4_strip.py data/clean_validation_data.h5 data/clean_test_data.h5 models/anonymous_2_bd_net.h5 models/anonymous_2_bd_weights.h5
+```
+
+### Figures
+
+The figures are downloaded from Jupyter notebook of this project.
+
+#### Provided Datasets
 
 Clean sample:
 
-![](strip/images/Sample_Clean.png)
+![](strip/images/Sample/Clean.png)
 
 Sunglasses sample:
 
-![](strip/images/Sample_Sunglasses.png)
+![](strip/images/Sample/Sunglasses.png)
 
 Eyebrows sample:
 
-![](strip/images/Sample_Eyebrows.png)
+![](strip/images/Sample/Eyebrows.png)
 
-Perturbation demonstration:
+Anonymous 1 (Lipstick) sample:
 
-![](strip/images/Sample_Perturbation.png)
+![](strip/images/Sample/Anonymous1.png)
 
-#### BadNet1
+Another sunglasses sample:
+
+![](strip/images/Sample/Sunglasses_M.png)
+
+#### BadNet1 (Sunglasses)
+
+Perturbation demo:
+
+![](strip/images/BadNet1/Perturbation.png)
 
 Entropy distribution of perturbed clean (benign) and poisoned (trojan) samples.
 
-![](strip/images/BadNet1, n_test=2000 ,n_perturb=100.png)
+![](strip/images/BadNet1/test2000_perturb100.png)
 
 False Rejection Rate (FRR), False Acceptance Rate (FAR) relationship curve.
 
-![](strip/images/FAR_FRR_BadNet1.png)
+![](strip/images/BadNet1/FAR_FRR_BadNet1.png)
 
-Accuracy performance on clean validation dataset *clean_validation_data.h5*: 91.63419069888282%
 
-#### BadNet2
+
+#### BadNet2 (Anonymous 1)
+
+Perturbation demo:
+
+![](strip/images/BadNet2/Perturbation.png)
 
 Entropy distribution of perturbed clean samples.
 
-![](strip/images/BadNet2, n_test=2000, n_perturb=100,200.png)
+![](strip/images/BadNet2/test2000_perturb100.png)
 
-Accuracy performance on clean validation dataset *clean_validation_data.h5*: 76.66926474408938%
+FRR and FAR relationship curve.
 
-#### BadNet3
+![](strip/images/BadNet2/FAR_FRR_BadNet2.png)
+
+
+
+#### BadNet3 (Multi-trigger Multi-target)
 
 Entropy distribution of perturbed clean (benign) and poisoned (trojan) samples.
 
-![](strip/images/BadNet3, n_test=2000 ,n_perturb=100.png)
+![](strip/images/BadNet3/Entropy.png)
 
-False Rejection Rate (FRR), False Acceptance Rate (FAR) relationship curve.
+FRR and FAR relationship curve.
 
-![](strip/images/FAR_FRR_BadNet3.png)
+![](strip/images/BadNet3/FAR_FRR_BadNet3.png)
 
-Accuracy performance on clean validation dataset *clean_validation_data.h5*: 80.54906036199879%
+#### BadNet4 (Anonymous 2)
 
-For more detailed explanation and performance about code, please refer to Jupyter Notebook ***9163 Project STRIP.ipynb*** (PDF version also available) and our project report.
+Since the poisoned data is not available for this badnet, we have tried 2 entropy threshold values. Please refer to the performance table below.
+
+### Performance Table
+
+This table shows the accuracy of repaired badnet on provided clean validation dataset *clean_validation_data.h5*.
+
+| Repaired BadNet | Entropy threshold       | Accuracy                |
+| --------------- | ----------------------- | ----------------------- |
+| BadNet1         | 0.2942637391590416      | 91.63419069888282%      |
+| BadNet2         | 0.32472740328754        | 91.02797263358449%      |
+| BadNet3         | 0.49712885268670665     | 77.69983545509657%      |
+| BadNet4         | 0.2942637391590416      | 91.8333766346237%       |
+| ~~BadNet4~~     | ~~0.49712885268670665~~ | ~~40.374123148869835%~~ |
+
+For more detailed explanation and performance about code, please refer to Jupyter Notebook **STRIP.ipynb** (PDF version also available) and our project report.
