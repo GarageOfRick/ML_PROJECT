@@ -1,6 +1,12 @@
 # ML_PROJECT
 
 ## Fine-pruning
+To evaluate the repaired badnet please run:
+
+`python3 eval_repaired_badnet.py clean_validation_data single_test_image  repaired_badnet original_badnet`
+
+E.g., `python3 eval_repaired_badnet.py clean_validation_data.h5 test_image.png model/repaired_badnet1.h5 old_model/sunglasses_bd_net.h5`
+
 To run the repair badnet1 using fine-pruning:
 
 `python3 repair_badnet1_fine_prune.py clean_validation_data poisoned_data test_data bad_net`
