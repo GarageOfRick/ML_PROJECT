@@ -2,48 +2,28 @@
 
 ## STRIP
 
-### Naming
+### Usage & Naming
 
-| Model File Name                      | BadNet Number in STRIP Section |
-| ------------------------------------ | ------------------------------ |
-| sunglasses_bd_net.h5                 | BadNet1                        |
-| anonymous_1_bd_net.h5                | BadNet2                        |
-| multi_trigger_multi_target_bd_net.h5 | BadNet3                        |
-| anonymous_2_bd_net.h5                | BadNet4                        |
-
-### Usage
-
-To repair BadNet1, BadNet2 and BadNet3 using STRIP:
+To get the prediction result of **a single image** from repaired BadNets using STRIP:
 
 ```shell
-python repair_badnet1_strip.py clean_validation_data poisoned_data clean_test_data badnet badnet_weights
-```
-
-```shell
-python repair_badnet2_strip.py clean_validation_data poisoned_data clean_test_data badnet badnet_weights
-```
-
-```shell
-python repair_badnet3_strip.py clean_validation_data poisoned_data clean_test_data badnet badnet_weights
+python repair_badnet[1 | 2 | 3 | 4]_strip.py single_test_image clean_data badnet badnet_weights
 ```
 
 E.g.
 
 ```shell
-python repair_badnet1_strip.py data/clean_validation_data.h5 data/sunglasses_poisoned_data.h5 data/clean_test_data.h5 models/sunglasses_bd_net.h5 models/sunglasses_bd_weights.h5
+python repair_badnet1_strip.py data/PNGs/Sunglasses_0_1.png data/clean_validation_data.h5 models/sunglasses_bd_net.h5 models/sunglasses_bd_weights.h5
 ```
 
-To repair BadNet4 using STRIP:
+The relationship of Python program name, BadNet model file name and BadNet numbers in STRIP section are provided in the table below. Please change the program name when using different models.
 
-```shell
-python repair_badnet4_strip.py clean_validation_data clean_test_data badnet badnet_weights
-```
-
-E.g.
-
-```shell
-python repair_badnet4_strip.py data/clean_validation_data.h5 data/clean_test_data.h5 models/anonymous_2_bd_net.h5 models/anonymous_2_bd_weights.h5
-```
+| Python Program          | Model File Name                      | BadNet No. |
+| ----------------------- | ------------------------------------ | ---------- |
+| repair_badnet1_strip.py | sunglasses_bd_net.h5                 | BadNet1    |
+| repair_badnet2_strip.py | anonymous_1_bd_net.h5                | BadNet2    |
+| repair_badnet3_strip.py | multi_trigger_multi_target_bd_net.h5 | BadNet3    |
+| repair_badnet4_strip.py | anonymous_2_bd_net.h5                | BadNet4    |
 
 ### Figures
 
@@ -115,7 +95,7 @@ FRR and FAR relationship curve.
 
 #### BadNet4 (Anonymous 2)
 
-Since the poisoned data is not available for this badnet, we have tried 2 entropy threshold values. Please refer to the performance table below.
+Since the poisoned data is not available for this badnet, we have tried 2 entropy threshold values. More details available in the performance table below.
 
 ### Performance Table
 
