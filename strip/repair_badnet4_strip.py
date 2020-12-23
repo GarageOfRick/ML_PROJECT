@@ -9,10 +9,16 @@ from tqdm import tqdm
 from scipy.stats import norm
 
 # Retriving arguments from terminal
-val_data_filename = str(sys.argv[1])
+image_filename = str(sys.argv[1])
 clean_data_filename = str(sys.argv[2])
 model_filename = str(sys.argv[3])
 weight_filename = str(sys.argv[4])
+
+
+def read_img(filepath):
+    img = cv2.imread(filepath)
+    img = np.expand_dims(img, axis=0)
+    return img
 
 
 def data_loader(filepath):
@@ -31,33 +37,25 @@ def data_preprocess(x_data):
 
 def main():
     # Loading data
-    x_val, y_val = data_loader(val_data_filename)
+    x_val = read_img(image_filename)
     x_val = data_preprocess(x_val)
     x_benign, y_benign = data_loader(clean_data_filename)
     x_benign = data_preprocess(x_benign)
     
-    # Load model
+    # Load model and its weight
     bd_model = keras.models.load_model(model_filename)
-    
-    # Load model weights
     bd_model.load_weights(weight_filename)
 
-    # Hyper parameter about threshold finding and perturbing
-    n_test = 2000
-    n_perturb = 100
-
-    """Finding entropy threshold"""
-    # Default threshold value
+    # Threshold value for BadNet 4
     threshold = 0.2942637391590416
-    
-    print(f'threshold = {threshold}')
 
-    """Distinguishing backdoor samples"""
-    y_pred = predict(x_benign=x_benign, x_val=x_val, bd_model=bd_model, threshold=threshold)
+    # Prediction
+    y_pred = predict(x_benign=x_benign, x_val=x_val, bd_model=bd_model, threshold=threshold)[0]
 
-    """Present accuracy"""
-    class_accu = np.mean(np.equal(y_pred, y_val))*100
-    print('Classification accuracy:', class_accu) 
+    # Prediction result
+    print(f'Classification result: {y_pred}') 
+
+    return y_pred
 
 
 # Some helper functions
@@ -89,10 +87,10 @@ def entropyCalc(X_b, X_o, n_perturb, model):
     n_overlay = X_o.shape[0]
 
     # Entropy
-    entropy = np.zeros(n_background).astype(int).tolist()
+    entropy = [0] * n_background
 
     # Perturb through all samples
-    for i in tqdm(range(n_background)):
+    for i in range(n_background):
         # Assign backgrounds according to random indices
         background = X_b[i]
         # List of perturbed images
