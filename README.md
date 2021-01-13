@@ -1,5 +1,9 @@
 # ML PROJECT FOR ECE-GY 9163
 
+### Note: Running both program requires original validation data `clean_validation_data.h5`, so please go to:https://drive.google.com/drive/folders/13o2ybRJ1BkGUvfmQEeZqDo1kskyFywab to download the file. 
+### For strip method, put this file in `strip/data` folder, then run the code
+### For fine_pruning method, put this file in `fine_pruning` folder, then run the code
+
 ## STRIP
 
 ### Usage & Naming
