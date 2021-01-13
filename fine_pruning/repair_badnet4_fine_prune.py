@@ -53,7 +53,7 @@ def main():
     pruned_model = keras.models.load_model(model_filename)
     pred = 0
     threshold = 0.8
-    if np.mean(np.mean(test_active, axis=(0, 1))[clean_mask] - active[clean_mask]) > threshold:
+    if np.mean(np.mean(test_active[0])[clean_mask] - active[clean_mask]) > threshold:
         pred = 1283
     else:
         pred = np.argmax(pruned_model.predict(x_test), axis=1)
