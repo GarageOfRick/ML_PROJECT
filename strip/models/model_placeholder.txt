@@ -1,2 +1,0 @@
-# Please put the original models and weights in this folder when examining our project.
-# There is no change in the original BadNets models and weights.
