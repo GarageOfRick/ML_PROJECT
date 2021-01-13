@@ -1,0 +1,3 @@
+# Please put the clean_validation_data.h5 here when examining our project.
+# Since there is a file size limitation of 100MB on GitHub repository, we are unable to upload the original clean_validation_data.h5 here in the GitHub.
+# Also, please also put other validation data (png/h5) in this folder.
