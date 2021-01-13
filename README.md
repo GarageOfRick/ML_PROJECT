@@ -118,6 +118,8 @@ To evaluate the repaired badnet please run:
 
 E.g., `python3 repair_badnet1_fine_prune.py clean_validation_data.h5 test_image.png model/repaired_badnet1.h5 old_model/sunglasses_bd_net.h5`
 
+### Note: clean_validation_data.h5 should be put in `fine_pruning` folder to make the program run, we didn't upload it just because this data is too large.
+
 Just change the python program name, repaired_badnet and the corresponding old model for other badnet
 |Python program                        | Model File Name                      | Repaired Badnet number         |
 | -------------------------------------| ------------------------------------ | ------------------------------ |
